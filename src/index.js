@@ -1,10 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+
+import Dashboard from './pages/Dashboard';
+
+import background from './assets/background.png';
+
+import { Background, BackgroundImage } from './style';
 
 const App = () => (
-  <View style={{ flex: 1, alignContent: 'center', justifyContent: 'center' }}>
-    <Text>Search character Rick and Morty</Text>
-  </View>
+  <Background>
+    <BackgroundImage source={background} resizeMode="cover" blurRadius={5}>
+      <Dashboard />
+    </BackgroundImage>
+  </Background>
 );
 
 export default App;

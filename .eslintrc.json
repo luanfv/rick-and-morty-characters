@@ -20,13 +20,13 @@
     ],
     "rules": {
       "react/jsx-filename-extension": [
-          "error", 
-          {
-            "exntensions": [".js", ".jsx"]
-          }
-        ],
-        "global-require": "off",
-        "import/prefer-default-export": "off",
-        "no-unused-expressions": ["error", { "allowTaggedTemplates": true }]
+        "error", 
+        {
+          "exntensions": [".js", ".jsx"]
+        }
+      ],
+      "global-require": "off",
+      "import/prefer-default-export": "off",
+      "no-unused-expressions": ["error", { "allowTaggedTemplates": true }]
     }
 }
