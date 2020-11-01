@@ -109,7 +109,7 @@ const Dashboard = () => {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         data={chars}
-        keyExtractor={char => char.id}
+        keyExtractor={char => char.id.toString()}
         renderItem={({ item }) => (
           <Container>
             <Photo source={{ uri: item.image }} style={{ width: 80, height: 80 }} />
