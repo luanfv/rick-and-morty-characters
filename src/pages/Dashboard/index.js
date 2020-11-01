@@ -56,55 +56,55 @@ const Dashboard = () => {
   }, [info]);
 
   return (
-    <ListChars 
-      isAndroid={isAndroid}
-      showsVerticalScrollIndicator ={false}
-      showsHorizontalScrollIndicator={false}
-      data={chars}
-      keyExtractor={char => char.id}
-      ListHeaderComponent={() => (
-        <Header>
-            <HeaderLogo source={logo} />
-            <HeaderPages>
-              <HeaderPagesButton onPress={init}>
-                  <HeaderPagesButtonText>
-                    init
-                  </HeaderPagesButtonText>
-              </HeaderPagesButton>
+    <>
+      <Header>
+        <HeaderLogo source={logo} />
+        <HeaderPages>
+          <HeaderPagesButton onPress={init}>
+              <HeaderPagesButtonText>
+                init
+              </HeaderPagesButtonText>
+          </HeaderPagesButton>
 
-              <HeaderPagesNavigation>
-                <HeaderPagesButton onPress={prev} style={{ marginRight: 15 }}>
-                  <HeaderPagesButtonText>
-                    {`<`}
-                  </HeaderPagesButtonText>
-                </HeaderPagesButton>
+          <HeaderPagesNavigation>
+            <HeaderPagesButton onPress={prev} style={{ marginRight: 15 }}>
+              <HeaderPagesButtonText>
+                {`<`}
+              </HeaderPagesButtonText>
+            </HeaderPagesButton>
 
-                <HeaderPagesButton onPress={next}>
-                  <HeaderPagesButtonText>
-                    {`>`}
-                  </HeaderPagesButtonText>
-                </HeaderPagesButton>
-              </HeaderPagesNavigation>
-            </HeaderPages>
-        </Header>
-      )}
-      renderItem={({ item }) => (
-        <Container>
-          <Photo source={{ uri: item.image }} style={{ width: 80, height: 80 }} />
-          <Infos>
-            <Name>
-              {item.name}
-            </Name>
-            <Description>
-              Status: {item.status}
-            </Description>
-            <Description>
-              Specie: {item.species}
-            </Description>
-          </Infos>
-        </Container>
-      )}
-    />
+            <HeaderPagesButton onPress={next}>
+              <HeaderPagesButtonText>
+                {`>`}
+              </HeaderPagesButtonText>
+            </HeaderPagesButton>
+          </HeaderPagesNavigation>
+        </HeaderPages>
+      </Header>
+      <ListChars 
+        isAndroid={isAndroid}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        data={chars}
+        keyExtractor={char => char.id}
+        renderItem={({ item }) => (
+          <Container>
+            <Photo source={{ uri: item.image }} style={{ width: 80, height: 80 }} />
+            <Infos>
+              <Name>
+                {item.name}
+              </Name>
+              <Description>
+                Status: {item.status}
+              </Description>
+              <Description>
+                Specie: {item.species}
+              </Description>
+            </Infos>
+          </Container>
+        )}
+      />
+    </>
   );
 }
 
