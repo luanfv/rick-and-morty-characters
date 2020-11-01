@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import { View, Text, FlatList, Platform, Image } from 'react-native';
+import { Platform } from 'react-native';
 import axios from 'axios';
 
 import api from '../../service/api';
@@ -14,7 +14,9 @@ import {
   Name, 
   Description, 
   Header, 
+  HeaderTitle,
   HeaderLogo,
+  HeaderFilter,
   HeaderPages,
   HeaderPagesButton,
   HeaderPagesButtonText,
@@ -24,6 +26,8 @@ import {
 const Dashboard = () => {
   const [chars, setChars] = useState([]);
   const [info, setInfo] = useState([]);
+  const [isFocus, setIsFocus] = useState(false);
+  const [filterInput, setFilterInput] = useState('');
 
   const isAndroid = useMemo(() => Platform.OS === 'android', [Platform.OS]);
 
@@ -33,32 +37,52 @@ const Dashboard = () => {
 
   const init = useCallback(() => {
     api.char.get()
-    .then(async response => {
+    .then(response => {
       setChars(response.data.results);
       setInfo(response.data.info);
+      setFilterInput('');
     });
   }, []);
 
   const next = useCallback(() => {
     axios.get(info.next)
-    .then(async response => {
+    .then(response => {
       setChars(response.data.results);
       setInfo(response.data.info);
     });
   }, [info]);
 
   const prev = useCallback(() => {
-      axios.get(info.prev)
-      .then(async response => {
-        setChars(response.data.results);
-        setInfo(response.data.info);
-      });
+    axios.get(info.prev)
+    .then(response => {
+      setChars(response.data.results);
+      setInfo(response.data.info);
+    });
   }, [info]);
+
+  const filter = useCallback(() => {
+    api.char.get(`?name=${filterInput}`)
+    .then(response => {
+      setChars(response.data.results);
+      setInfo(response.data.info);
+    })
+  }, [filterInput]);
 
   return (
     <>
       <Header>
-        <HeaderLogo source={logo} />
+        <HeaderTitle>
+          <HeaderLogo source={logo} />
+          <HeaderFilter 
+            placeholder="Filter character" 
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            isFocus={isFocus}
+            value={filterInput}
+            onChangeText={value => setFilterInput(value)}
+            onSubmitEditing={filter}
+          />
+        </HeaderTitle>
         <HeaderPages>
           <HeaderPagesButton onPress={init}>
               <HeaderPagesButtonText>
@@ -81,6 +105,7 @@ const Dashboard = () => {
           </HeaderPagesNavigation>
         </HeaderPages>
       </Header>
+      
       <ListChars 
         isAndroid={isAndroid}
         showsVerticalScrollIndicator={false}

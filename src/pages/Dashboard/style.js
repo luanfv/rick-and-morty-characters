@@ -13,6 +13,22 @@ export const HeaderLogo = styled.Image`
   margin-right: 10px;
 `;
 
+export const HeaderTitle = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const HeaderFilter = styled.TextInput`
+  margin-left: 8px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 10px;
+  border-radius: 8px;
+  flex: 1;
+  font-size: 18px;
+
+  border: ${props => !!props.isFocus ? 'rgb(47, 147, 49) solid 1px;' : '#fff solid 1px' };
+`;
 
 export const HeaderPages = styled.View`
   flex-direction: row;
