@@ -37,3 +37,37 @@ export const Description = styled.Text`
   margin-bottom: 6px;
   color: #fff;
 `;
+
+export const Header = styled.View`
+  margin-bottom: 50px;
+`;
+
+export const HeaderLogo = styled.Image`
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin-right: 10px;
+`;
+
+
+export const HeaderPages = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 8px;
+`;
+
+export const HeaderPagesButton = styled.TouchableOpacity`
+  padding: 8px 20px;
+  background: rgb(47, 147, 49);
+  border-radius: 4px;
+`;
+
+export const HeaderPagesButtonText = styled.Text`
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+export const HeaderPagesNavigation = styled.View`
+  flex-direction: row;
+`;
