@@ -1,9 +1,10 @@
 import styled from 'styled-components/native';
+import { Platform } from 'react-native';
 
 export const Header = styled.View`
   margin-bottom: 50px;
   margin: 0 24px;
-  margin-top: ${props => props.isAndroid ? 30 : 60}px;
+  margin-top: ${Platform.OS === 'android' ? 20 : 60}px;
 `;
 
 export const HeaderLogo = styled.Image`

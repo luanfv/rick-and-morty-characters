@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 
 import Dashboard from './pages/Dashboard';
 
@@ -8,6 +9,8 @@ import { Background, BackgroundImage } from './style';
 
 const App = () => (
   <Background>
+    <StatusBar barStyle="light-content" backgroundColor="#000" />
+
     <BackgroundImage source={background} resizeMode="cover" blurRadius={5}>
       <Dashboard />
     </BackgroundImage>

@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import { Platform } from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
 import api from '../../service/api';
@@ -28,8 +27,6 @@ const Dashboard = () => {
   const [info, setInfo] = useState([]);
   const [isFocus, setIsFocus] = useState(false);
   const [filterInput, setFilterInput] = useState('');
-
-  const isAndroid = useMemo(() => Platform.OS === 'android', [Platform.OS]);
 
   useEffect(() => {
     init();
@@ -107,7 +104,6 @@ const Dashboard = () => {
       </Header>
       
       <ListChars 
-        isAndroid={isAndroid}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         data={chars}
