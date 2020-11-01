@@ -82,6 +82,7 @@ export const Name = styled.Text`
   margin-bottom: 10px;
   color: #fff;
   flex: 1;
+  min-height: 23px;
 `;
 
 export const Description = styled.Text`
