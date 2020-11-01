@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
+import Background from '../../components/Background';
+
 import api from '../../service/api';
 
 import logo from '../../assets/logo.jpg';
@@ -66,7 +68,7 @@ const Dashboard = () => {
   }, [filterInput]);
 
   return (
-    <>
+    <Background>
       <Header>
         <HeaderTitle>
           <HeaderLogo source={logo} />
@@ -125,7 +127,7 @@ const Dashboard = () => {
           </Container>
         )}
       />
-    </>
+    </Background>
   );
 }
 

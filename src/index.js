@@ -1,20 +1,15 @@
+import 'react-native-gesture-handler';
+
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-import Dashboard from './pages/Dashboard';
+import Routes from './routes';
 
-import background from './assets/background.png';
-
-import { Background, BackgroundImage } from './style';
 
 const App = () => (
-  <Background>
-    <StatusBar barStyle="light-content" backgroundColor="#000" />
-
-    <BackgroundImage source={background} resizeMode="cover" blurRadius={5}>
-      <Dashboard />
-    </BackgroundImage>
-  </Background>
+    <NavigationContainer>
+      <Routes />
+    </NavigationContainer>
 );
 
 export default App;
