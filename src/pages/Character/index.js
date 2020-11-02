@@ -15,6 +15,7 @@ const Character = ({ route }) => {
   const [char, setChar] = useState({});
   const [location, setLocation] = useState('');
   const [origin, setOrigin] = useState('');
+  const [created, setCreated] = useState();
 
   useEffect(() => {
     api.char.get(`/${id}`)
@@ -22,6 +23,7 @@ const Character = ({ route }) => {
       setChar(response.data);
       setLocation(response.data.location.name);
       setOrigin(response.data.origin.name);
+      setCreated(format(new Date(response.data.created), 'yyyy-MM-dd'));
     })
     .catch(err => console.log(err));
   }, []);
@@ -65,7 +67,7 @@ const Character = ({ route }) => {
               />
               <Label 
                 title="Created"
-                description={format(new Date(char.created), 'yyyy-MM-dd')}
+                description={created}
               />
             </Infos>
           </Container>
