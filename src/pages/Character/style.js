@@ -16,7 +16,7 @@ export const Back = styled.TouchableOpacity`
 
 export const Container = styled.View`
   margin: 0 24px 40px;
-  ${Platform.OS === 'ios' && 'margin-top: 60px;'}
+  ${Platform.OS === 'ios' && 'margin-top: 45px;'}
 `;
 
 export const Photo = styled.Image`
