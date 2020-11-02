@@ -10,7 +10,7 @@ const BackgroundComponent = ({ children }) => (
   <Background>
     <StatusBar barStyle="light-content" backgroundColor="#000" />
     
-    <BackgroundImage source={background} resizeMode="cover" blurRadius={5}>
+    <BackgroundImage source={background} resizeMode="cover" blurRadius={3}>
       { children }
     </BackgroundImage>
   </Background>

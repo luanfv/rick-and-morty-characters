@@ -28,7 +28,7 @@ export const HeaderFilter = styled.TextInput`
   flex: 1;
   font-size: 18px;
 
-  border: ${props => !!props.isFocus ? 'rgb(47, 147, 49) solid 1px;' : '#fff solid 1px' };
+  border: ${(props) => (props.isFocus ? 'rgb(47, 147, 49) solid 1px;' : '#fff solid 1px')};
 `;
 
 export const HeaderPages = styled.View`
@@ -70,7 +70,7 @@ export const Infos = styled.View`
 `;
 
 export const Photo = styled.Image`
-  border-radius: 10px;
+  border-radius: 50px;
   width: 100px;
   height: 100px;
   margin-right: 20px;

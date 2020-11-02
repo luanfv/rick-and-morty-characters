@@ -24,7 +24,7 @@ import {
   HeaderPagesNavigation
 } from './style';
 
-const Dashboard = () => {
+const Dashboard = ({ navigation }) => {
   const [chars, setChars] = useState([]);
   const [info, setInfo] = useState([]);
   const [isFocus, setIsFocus] = useState(false);
@@ -111,7 +111,7 @@ const Dashboard = () => {
         data={chars}
         keyExtractor={char => char.id.toString()}
         renderItem={({ item }) => (
-          <Container>
+          <Container onPress={() => navigation.navigate('Character', { id: item.id })}>
             <Photo source={{ uri: item.image }} style={{ width: 80, height: 80 }} />
             <Infos>
               <Name>
