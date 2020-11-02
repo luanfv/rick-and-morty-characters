@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 import Background from '../../components/Background';
 
@@ -84,22 +85,16 @@ const Dashboard = ({ navigation }) => {
         </HeaderTitle>
         <HeaderPages>
           <HeaderPagesButton onPress={init}>
-              <HeaderPagesButtonText>
-                init
-              </HeaderPagesButtonText>
+              <Icon name="home" size={20} color="#fff" />
           </HeaderPagesButton>
 
           <HeaderPagesNavigation>
             <HeaderPagesButton onPress={prev} style={{ marginRight: 15 }}>
-              <HeaderPagesButtonText>
-                {`<`}
-              </HeaderPagesButtonText>
+              <Icon name="left" size={20} color="#fff" />
             </HeaderPagesButton>
 
             <HeaderPagesButton onPress={next}>
-              <HeaderPagesButtonText>
-                {`>`}
-              </HeaderPagesButtonText>
+              <Icon name="right" size={20} color="#fff" />
             </HeaderPagesButton>
           </HeaderPagesNavigation>
         </HeaderPages>

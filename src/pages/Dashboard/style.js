@@ -5,7 +5,7 @@ import { RectButton } from 'react-native-gesture-handler';
 export const Header = styled.View`
   margin-bottom: 50px;
   margin: 0 24px;
-  margin-top: ${Platform.OS === 'android' ? 20 : 60}px;
+  margin-top: ${Platform.OS === 'android' ? 20 : 45}px;
 `;
 
 export const HeaderLogo = styled.Image`
@@ -42,6 +42,8 @@ export const HeaderPagesButton = styled(RectButton)`
   padding: 8px 20px;
   background: rgb(47, 147, 49);
   border-radius: 4px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const HeaderPagesButtonText = styled.Text`

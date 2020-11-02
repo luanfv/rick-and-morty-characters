@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { format } from 'date-fns';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 import api from '../../service/api';
 
 import Background from '../../components/BackgroundProfile';
 import Label from './Label';
 
-import { Container, Photo, Infos } from './style';
+import { Header, Back, Container, Photo, Infos } from './style';
 
-const Character = ({ route }) => {
+const Character = ({ route, navigation }) => {
   const { id } = route.params;
 
   const [char, setChar] = useState({});
@@ -35,6 +36,11 @@ const Character = ({ route }) => {
         &&
         <ScrollView>
           <Container>
+            <Header>
+              <Back onPress={() => navigation.goBack()}>
+                <Icon name="left" size={30} color="#000" />
+              </Back>
+            </Header>
             <Photo source={{ uri: char.image }} />
             <Infos>
               <Label 
