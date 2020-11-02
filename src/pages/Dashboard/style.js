@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { Platform } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 
 export const Header = styled.View`
   margin-bottom: 50px;
@@ -37,7 +38,7 @@ export const HeaderPages = styled.View`
   margin-top: 8px;
 `;
 
-export const HeaderPagesButton = styled.TouchableOpacity`
+export const HeaderPagesButton = styled(RectButton)`
   padding: 8px 20px;
   background: rgb(47, 147, 49);
   border-radius: 4px;
@@ -57,7 +58,7 @@ export const ListChars = styled.FlatList`
   margin: 15px 24px 0;
 `;
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled(RectButton)`
   margin-bottom: 20px;
   background: rgba(47, 147, 49, 0.85);
   padding: 10px;
