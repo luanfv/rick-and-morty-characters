@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView, View, ActivityIndicator } from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
+import { ScrollView, View, ActivityIndicator, Alert } from 'react-native';
 import { format } from 'date-fns';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -20,6 +20,10 @@ const Character = ({ route, navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    init();
+  }, []);
+
+  const init = useCallback(() => {
     api.char.get(`/${id}`)
     .then((response) => {
       setChar(response.data);
@@ -27,7 +31,14 @@ const Character = ({ route, navigation }) => {
       setOrigin(response.data.origin.name);
       setCreated(format(new Date(response.data.created), 'yyyy-MM-dd'));
     })
-    .catch(() => {})
+    .catch(() => Alert.alert(
+      'Connection problem', 
+      'Could not load the character list, check your Internet connection and try again',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Reload', onPress: () => init() }
+      ],
+    ))
     .finally(() => setIsLoading(false));
   }, []);
 
@@ -39,7 +50,7 @@ const Character = ({ route, navigation }) => {
         </View>
       )}
 
-      {!isLoading && (
+      {!isLoading && char && (
         <ScrollView>
           <Container>
             <Header>

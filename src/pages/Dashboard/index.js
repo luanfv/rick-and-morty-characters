@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Alert } from 'react-native';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -44,7 +44,15 @@ const Dashboard = ({ navigation }) => {
       setFilterInput('');
 
       setIsLoading(false);
-    });
+    })
+    .catch(() => Alert.alert(
+      'Connection problem', 
+      'Could not load the character list, check your Internet connection and try again',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Reload', onPress: () => init() }
+      ],
+    ));
   }, []);
 
   const next = useCallback(() => {
