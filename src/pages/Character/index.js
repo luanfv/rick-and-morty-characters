@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
+import { ScrollView, View, ActivityIndicator, Alert } from 'react-native';
 import { format } from 'date-fns';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -13,12 +13,17 @@ import { Header, Back, Container, Photo, Infos } from './style';
 const Character = ({ route, navigation }) => {
   const { id } = route.params;
 
-  const [char, setChar] = useState({});
+  const [char, setChar] = useState(undefined);
   const [location, setLocation] = useState('');
   const [origin, setOrigin] = useState('');
   const [created, setCreated] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    init();
+  }, []);
+
+  const init = useCallback(() => {
     api.char.get(`/${id}`)
     .then((response) => {
       setChar(response.data);
@@ -26,14 +31,26 @@ const Character = ({ route, navigation }) => {
       setOrigin(response.data.origin.name);
       setCreated(format(new Date(response.data.created), 'yyyy-MM-dd'));
     })
-    .catch(err => console.log(err));
+    .catch(() => Alert.alert(
+      'Connection problem', 
+      'Could not load the character list, check your Internet connection and try again',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Reload', onPress: () => init() }
+      ],
+    ))
+    .finally(() => setIsLoading(false));
   }, []);
 
   return (
     <Background>
-      {
-        char !== {}
-        &&
+      {isLoading && (
+        <View style={{ marginTop: 40 }}>
+          <ActivityIndicator size="large" color="#000" />
+        </View>
+      )}
+
+      {!isLoading && char && (
         <ScrollView>
           <Container>
             <Header>
@@ -78,7 +95,7 @@ const Character = ({ route, navigation }) => {
             </Infos>
           </Container>
         </ScrollView>
-      }
+      )}
     </Background>
   )
 }
