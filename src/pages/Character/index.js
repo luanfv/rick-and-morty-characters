@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View, ActivityIndicator } from 'react-native';
 import { format } from 'date-fns';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -13,10 +13,11 @@ import { Header, Back, Container, Photo, Infos } from './style';
 const Character = ({ route, navigation }) => {
   const { id } = route.params;
 
-  const [char, setChar] = useState({});
+  const [char, setChar] = useState(undefined);
   const [location, setLocation] = useState('');
   const [origin, setOrigin] = useState('');
   const [created, setCreated] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     api.char.get(`/${id}`)
@@ -26,14 +27,19 @@ const Character = ({ route, navigation }) => {
       setOrigin(response.data.origin.name);
       setCreated(format(new Date(response.data.created), 'yyyy-MM-dd'));
     })
-    .catch(err => console.log(err));
+    .catch(() => {})
+    .finally(() => setIsLoading(false));
   }, []);
 
   return (
     <Background>
-      {
-        char !== {}
-        &&
+      {isLoading && (
+        <View style={{ marginTop: 40 }}>
+          <ActivityIndicator size="large" color="#000" />
+        </View>
+      )}
+
+      {!isLoading && (
         <ScrollView>
           <Container>
             <Header>
@@ -78,7 +84,7 @@ const Character = ({ route, navigation }) => {
             </Infos>
           </Container>
         </ScrollView>
-      }
+      )}
     </Background>
   )
 }

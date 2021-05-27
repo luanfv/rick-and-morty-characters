@@ -7,9 +7,9 @@ import Routes from './routes';
 
 
 const App = () => (
-    <NavigationContainer>
-      <Routes />
-    </NavigationContainer>
+  <NavigationContainer>
+    <Routes />
+  </NavigationContainer>
 );
 
 export default App;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { View, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -21,7 +22,6 @@ import {
   HeaderFilter,
   HeaderPages,
   HeaderPagesButton,
-  HeaderPagesButtonText,
   HeaderPagesNavigation
 } from './style';
 
@@ -30,6 +30,7 @@ const Dashboard = ({ navigation }) => {
   const [info, setInfo] = useState([]);
   const [isFocus, setIsFocus] = useState(false);
   const [filterInput, setFilterInput] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     init();
@@ -41,6 +42,8 @@ const Dashboard = ({ navigation }) => {
       setChars(response.data.results);
       setInfo(response.data.info);
       setFilterInput('');
+
+      setIsLoading(false);
     });
   }, []);
 
@@ -99,29 +102,39 @@ const Dashboard = ({ navigation }) => {
           </HeaderPagesNavigation>
         </HeaderPages>
       </Header>
+
+      {isLoading && (
+        <View style={{ marginTop: 40 }}>
+          <ActivityIndicator size="large" color="#fff" />
+        </View>
+      )}
+
+      {!isLoading && (
+        <ListChars 
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          data={chars}
+          keyExtractor={char => char.id.toString()}
+          renderItem={({ item }) => (
+            <Container onPress={() => navigation.navigate('Character', { id: item.id })}>
+              <Photo source={{ uri: item.image }} style={{ width: 80, height: 80 }} />
+              <Infos>
+                <Name>
+                  {item.name}
+                </Name>
+                <Description>
+                  Status: {item.status}
+                </Description>
+                <Description>
+                  Specie: {item.species}
+                </Description>
+              </Infos>
+            </Container>
+          )}
+        />
+      )}
       
-      <ListChars 
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        data={chars}
-        keyExtractor={char => char.id.toString()}
-        renderItem={({ item }) => (
-          <Container onPress={() => navigation.navigate('Character', { id: item.id })}>
-            <Photo source={{ uri: item.image }} style={{ width: 80, height: 80 }} />
-            <Infos>
-              <Name>
-                {item.name}
-              </Name>
-              <Description>
-                Status: {item.status}
-              </Description>
-              <Description>
-                Specie: {item.species}
-              </Description>
-            </Infos>
-          </Container>
-        )}
-      />
+      
     </Background>
   );
 }
