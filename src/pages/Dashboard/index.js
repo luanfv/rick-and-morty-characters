@@ -7,7 +7,7 @@ import Background from '../../components/Background';
 
 import api from '../../service/api';
 
-import logo from '../../assets/logo.jpg';
+import logo from '../../assets/logo.png';
 
 import { 
   ListChars, 
