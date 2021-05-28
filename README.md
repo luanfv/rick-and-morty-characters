@@ -60,7 +60,7 @@
 Rick and Morty Characters é um aplicativo que lista os personagens da serie de TV Rick and Morty,
 utiliza a api externa ```https://rickandmortyapi.com/```.
 
-Caso tenha interesse em baixar o app, <a href="https://play.google.com/store/apps/details?id=com.rickandmortycharacters">clique aqui</a>.
+Para baixar o app, <a href="https://play.google.com/store/apps/details?id=com.rickandmortycharacters">clique aqui</a>.
 
 
 <!-- Getting Started -->
